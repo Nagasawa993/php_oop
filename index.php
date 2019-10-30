@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <header class="px-5 bg-primary">
+<header class="px-5 bg-primary">
       <nav class="navbar navbar-dark">
           <a href="index.php" class="navbar-brand">TODO APP</a>
           <div class="justify-content-end">
@@ -69,7 +69,7 @@
                 </td>
                 <td>NOT YET</td>
                 <td>
-                    <a class="text-success" href="">EDIT</a>
+                    <a class="text-success" href="edit.php?id=<?php echo h($task['id']); ?>">EDIT</a>
                 </td>
                 <td>
                     <a class="text-danger" href="">DELETE</a>
