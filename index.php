@@ -10,6 +10,7 @@
     // echo '<pre>';
     // var_dump($tasks);
     // exit();
+
 ?>
 
 
@@ -56,6 +57,8 @@
                   <th>STATUS</th>
                   <th></th>
                   <th></th>
+                  <th>DATE</th>
+
               </tr>
             </thead>
             <tbody>
@@ -66,7 +69,10 @@
                 <?php echo h($task['name']); ?>
                 </td>
                 <td>
-                <?php echo h($task['due_date']); ?>
+
+                <!-- 日付 -->
+                <?php echo date("Y/m/d", strtotime(h($task['due_date']))); ?>
+                
                 </td>
                 <td>NOT YET</td>
                 <td>
