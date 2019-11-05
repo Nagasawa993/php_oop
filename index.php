@@ -10,7 +10,6 @@
     // echo '<pre>';
     // var_dump($tasks);
     // exit();
-
 ?>
 
 
@@ -25,6 +24,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
 <header class="px-5 bg-primary">
@@ -32,19 +32,19 @@
           <a href="index.php" class="navbar-brand">TODO APP</a>
           <div class="justify-content-end">
               <span class="text-light">
-                  Red
+                  Seedkun
               </span>
           </div>
       </nav>
     </header>
     <main class="container py-5">
         <section>
-            <form class="form-row justify-content-center" action="create.php" method="POST">
+            <form class="form-row justify-content-center">
                 <div class="col-10 col-md-6 py-2">
-                      <input type="text" class="form-control" placeholder="ADD TODO" name="task">
+                      <input id="input-task" type="text" class="form-control" placeholder="ADD TODO" name="task">
                 </div>
                 <div class="py-2 col-md-3 col-10">
-                    <button type="submit" class="col-12 btn btn-primary">ADD</button>
+                    <button id= "add-button" type="submit" class="col-12 btn btn-primary">ADD</button>
                 </div>
             </form>
         </section>
@@ -57,7 +57,7 @@
                   <th>STATUS</th>
                   <th></th>
                   <th></th>
-                  <th>DATE</th>
+                  <th></th>
 
               </tr>
             </thead>
@@ -69,18 +69,14 @@
                 <?php echo h($task['name']); ?>
                 </td>
                 <td>
-
-                <!-- 日付 -->
-                <?php echo date("Y/m/d", strtotime(h($task['due_date']))); ?>
-                
-                </td>
+                <?php echo h($task['due_date']); ?>
+                </td> 
                 <td>NOT YET</td>
                 <td>
                     <a class="text-success" href="edit.php?id=<?php echo h($task['id']); ?>">EDIT</a>
                 </td>
                 <td>
-                   <a class="text-danger" href="delete.php?id=<?php echo ($task['id']); ?>"><i class="material-icons">thumb_down
-</i></a>
+                   <a class="text-danger" href="delete.php?id=<?php echo h($task['id']); ?>">DELETE</a>
                 </td>
               </tr>
               <?php endforeach; ?>
@@ -89,5 +85,7 @@
         </section>
     </main>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./assets/js/app.js"></script>
 </body>
 </html>
