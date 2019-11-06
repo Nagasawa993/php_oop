@@ -10,6 +10,8 @@ $todo = New Todo;
 
 $todo->delete($id);
 
+echo json_encode($id);
+
 header('Location: index.php');
 
 
