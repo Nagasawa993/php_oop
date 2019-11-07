@@ -3,13 +3,12 @@ $(function(){
   //idを指定するときは#をつける
   //ADDボタンがクリックされたとき
   $('#add-button').on('click',function(e){
-
     // alert('addがクリックされた');
 
     //formタグの送信を無効化する。（二重投稿を防ぐ）
     e.preventDefault();
 
-    //入力されたタスク名を取得
+    //.val() で入力されたタスク名を取得、（ないとテキスト画面全体のデータを返しちゃう）
     let taskName = $('#input-task').val();
     // alert(taskName);
 
@@ -25,9 +24,10 @@ $(function(){
       }
 
     }).done((data)=>{
+        console.log(data);
         $('tbody').prepend(
           //prependはtbodyの先頭にデータを付け足す ＜tr＞のデータ
-          `<tr>` + 
+          `<tr id="task-${data['id']}">` + 
                 `<td>${data['name']}</td>` + 
                 `<td>${data['due_date']}</td>` + 
                 `<td>NOT YET</td>` + 
@@ -39,6 +39,8 @@ $(function(){
                 `</td>` + 
               `</tr>`
         )
+        //入力欄をクリアする
+        $("#input-task").val("");
 
       // $('tbody').prepend(`<p>${data}</p>`);
     }).fail((error)=>{
@@ -70,14 +72,23 @@ $(function(){
       }
     }).done((data)=>{
       console.log(data);
+      $('#task-' + data).fadeOut();
 
     }).fail((error)=>{
       console.log(error);
 
     })
+   })
 
 
+   $('.text-light').on('click',function(){
+     alert('クリックされた');
+     console.log('クリックされた');
+   })
 
+   //完了ボタンがクリックされたとき
+   $(document).on('click','.btn-info',function(){
+     alert('aa');
    })
 
 })

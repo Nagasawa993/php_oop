@@ -6,7 +6,7 @@ class DbManager
     {
         //DBに接続
         $host = 'localhost';
-        $dbname = 'Todo';
+        $dbname = 'Todo2';
         $charset = 'utf8mb4';
         $user = 'root';
         $password = 'root';

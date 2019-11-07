@@ -21,7 +21,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
@@ -58,26 +58,36 @@
                   <th></th>
                   <th></th>
                   <th></th>
-
               </tr>
             </thead>
             <tbody>
               <?php foreach ($tasks as
               $task):?>
-              <tr>
+              <tr id="task-<?php echo h($task['id']); ?>">
                 <td>
                 <?php echo h($task['name']); ?>
                 </td>
                 <td>
                 <?php echo h($task['due_date']); ?>
-                </td> 
+                </td>
+                <?php if($task['done_flg'] ==0): ?>
                 <td>NOT YET</td>
+                  <?php else: ?>
+                <td>DONE</td>
+                  <?php endif; ?>
                 <td>
                     <a class="text-success" href="edit.php?id=<?php echo h($task['id']); ?>">EDIT</a>
                 </td>
                 <td>
                    <a data-id="<?php echo h($task['id']); ?>" class="text-danger delete-button" href="delete.php?id=<?php echo h($task['id']); ?>">DELETE</a>
                 </td>
+
+                <td>
+                <?php if($task['done_flg'] ==0): ?>
+                  <button class="btn btn-info">完了</button>
+                  <?php endif; ?>
+                </td>
+
               </tr>
               <?php endforeach; ?>
             </tbody>

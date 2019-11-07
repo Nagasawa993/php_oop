@@ -48,6 +48,18 @@ class Todo
         $stmt->execute([$id]);
     }
 
+    //タスクを完了させるためのメソッド
+    public function done($id)
+    {
+        //WHERE id = ? とは、idが?番の時の値を返しての意味
+        $stmt = $this->db_manager->dbh->prepare('UPDATE '.$this->table.' SET done_flg = 1 WHERE id = ?');
+        //実行
+        $stmt->execute([$id]);
     }
+
+
+
+
+}
     
 
